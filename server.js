@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const PORT = 8080;
+const PORT =  8080;
 const connectDB = require("./config/db");
 const cookieParser = require("cookie-parser")
 app.use(express.json());

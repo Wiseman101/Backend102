@@ -3,10 +3,14 @@ const bcrypt = require("bcryptjs")
 
 const registerValidation =  data => {
     const schema = joi.object({
-        name:joi.string().min(8).max(100).required(),
+        name:joi.string().min(8).max(100).required().messages({
+            'string.empty':"Name is required",
+            "string.min":"Name must atleast 8 characters"
+        }),
         email:joi.string().required().email(),
         password:joi.string().required().alphanum().min(6),
-        role:joi.string()
+        role:joi.string(),
+        
     });
 
 
