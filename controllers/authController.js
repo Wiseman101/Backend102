@@ -46,7 +46,7 @@ const loginUser = async (req,res) => {
     const correctPass = await bcrypt.compare(req.body.password,user.password);
     if(!correctPass) return res.status(401).send("Invalid credentials");
 
-    const accessToken = jwt.sign({id:user._id, role:user.role}, process.env.SECRET_TOKEN,{expiresIn:"1.5min"});
+    const accessToken = jwt.sign({id:user._id, role:user.role}, process.env.SECRET_TOKEN,{expiresIn:"30sec"});
     const refreshToken = jwt.sign({id:user._id,role:user.role},process.env.REFRESH_TOKEN,{expiresIn:"3d"});
 
     user.refreshToken = refreshToken;
@@ -107,3 +107,5 @@ const logout = async (req,res) => {
 }
 
 module.exports = {registerUser,loginUser,UserRefreshToken,logout};
+
+
